@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+.light {
+  /* Navbar */
+  --NavbarTitleColor: rgb(29, 29, 29);
+  --NavbarBGC: rgb(233, 233, 233);
+  --NavbarLightDarkButtonBGC: rgb(91, 91, 91);
+  --NavbarActiveColor: rgb(110, 110, 110);
+  --NavbarActiveBGC: rgb(171, 171, 171);
+  --NavbarBoxShadowColor: 2px 2px 5px rgb(170, 170, 170); 
+
+  /* Pages */
+  --PageBGC: #f4f4f4;
+  --PageColor: #171717;
+  --PageContainerBGC: white;
+  --PageHeadingColor: #171717;
+  --PageContainerBoxShadow: 1px 5px 6px rgb(208, 208, 208);
+    /* forms */
+  --PageFormBGC: white;
+  --PageFormColor: black;
+  --PageFormBorder: 1px solid black;
+  --PageFormBtnBGC: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dark {
+  /* Navbar */
+  --NavbarTitleColor: rgb(235, 235, 235);
+  --NavbarBGC: #1f1f1f;
+  --NavbarLightDarkButtonBGC: #c4c4c4;
+  --NavbarActiveColor: rgb(227, 227, 227);
+  --NavbarActiveBGC: rgb(133, 133, 133);
+  --NavbarBoxShadowColor: 0 5px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+
+  /* Pages */
+  --PageBGC: #121212;
+  --PageColor: #e0e0e0;
+  --PageContainerBGC: #1f1f1f;
+  --PageHeadingColor: #8c8c8c;
+  --PageContainerBoxShadow: 2px 5px 10px -2px rgba(255, 255, 255, 0.179);
+    /* forms */
+  --PageFormBGC: black;
+  --PageFormColor: white;
+  --PageFormBorder: none;
+  --PageFormBtnBGC: rgb(77, 77, 77);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  height: 40px;
+  width: 150px;
+  font-size: 1.4em;
+  border-radius: 10px;
+  border: none;
+
+  transform-origin: center center;
+  transition: transform 0.3s ease-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button:hover {
+  transform: scale(0.8);
+}
+
+
+.Form-Box {
+  background-color: var(--PageContainerBGC);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  gap: 10px;
+  padding: 50px;
+  width: 400px;
+  height: 450px;
+  color: var(--PageColor);
+}
+
+.Form-Field {
+  height: 60px;
+  width: 100%;
+  padding-left: 5px;
+  background-color: var(--PageFormBGC);
+  color: var(--PageFormColor);
+  border: var(--PageFormBorder);
+}
+
+.Form-Btn {
+  height: 70px;
+  font-size: 1.2em;
+  border-radius: 0;
+  width: 100%;
+  background-color: var(--PageFormBtnBGC);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Form-Google {
+  background-color: #4285f4;
 }

@@ -1,0 +1,44 @@
+.ErrorBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: red;
+    margin-bottom: -50px;
+    animation-name: fadeInOut;
+    animation-duration: 3s;
+}
+
+.ErrorBanner.hide {
+    opacity: 0;
+}
+
+.ErrorBanner p {
+    font-size: 2em;
+    color: white;
+}
+
+.ErrorBanner p::after {
+    content: "\1F914";
+    margin-left: 20px;
+}
+
+.ErrorBanner img {
+    width: 70px;
+    margin-left: 50px;
+}
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0.3;
+    }
+    10% {
+      opacity: 0.9;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

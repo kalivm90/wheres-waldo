@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme+Expanded:wght@800&display=swap');
+
+.Navbar {
+    --lightDarkImageSize: 40px;
+    --lightDarkButtonHeight: calc(var(--lightDarkImageSize) + 20px);
+    --navbarChildPad: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: var(--NavbarBGC);
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: var(--NavbarBoxShadowColor);
+}
+
+.Navbar h1 {
+    flex: 1;
+    padding-left: var(--navbarChildPad);
+    font-family: "BioRhyme Expanded";
+    font-size: 2.5em;
+    color: var(--NavbarTitleColor);
+}
+
+/* links */
+.Links {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.Links a {
+    color: var(--NavbarTitleColor);
+    font-size: 1.6em;
+    text-decoration: none;
+}
+
+.Links a:hover {
+    text-decoration: underline;
+}
+
+.Links a.active {
+    color: var(--NavbarActiveColor);
+}
+
+
+.Link {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.Link:hover, .Link.active {
+    background-color: var(--NavbarActiveBGC);
+}
+
+.Navbar .lightDark-container {
+    flex: 1;
+    padding-right: var(--navbarChildPad);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 200px;
+    /* background-color: green; */
+}
+
+.lightDark-container button {
+    border: 1px solid rgb(19, 19, 19);
+    border-radius: 1em;
+    width: 80px;
+    height: var(--lightDarkButtonHeight);
+    background-color: var(--NavbarLightDarkButtonBGC);
+    box-shadow: 2px 2px 5px rgb(110, 110, 110);
+}
+
+.lightDark-container button img {
+    width: var(--lightDarkImageSize);
+    height: auto;
+}

@@ -1,0 +1,102 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--PageBGC);
+}
+
+.Home-Main {
+  height: 100vh;
+  color: var(--PageColor);
+  padding: 20px;
+}
+
+.Home-Main header {
+  padding: 20px;
+  background-color: var(--PageContainerBGC);
+  border-radius: 20px;
+  /* box-shadow: 0 5px 10px 1px rgba(255, 255, 255, 0.179); */
+  box-shadow: var(--PageContainerBoxShadow);
+}
+.Home-Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.Home-Info h1 {
+  text-align: center;
+  font-size: 2em;
+  width: 100%;
+  /* color: var(--PageHeadingColor) */
+}
+
+.Info-Wrapper {
+  width: calc(100% - 250px);
+  display: flex;
+  gap: 20px;
+}
+
+.Info-Wrapper p {
+  font-size: 1.5em;
+  color: var(--PageHeadingColor)
+}
+
+.Info-Summary {
+  line-height: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Info-Login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  float: right;
+}
+.Info-Login img {
+  /* align-self: flex-start; */
+  width: 100px;
+}
+
+.Login-Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.Login-Wrapper p {
+  text-align: center;
+  font-style: italic;
+  font-weight: 100;
+  color: var(--PageHeadingColor)
+}
+
+.Login-Wrapper div {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+
+/* HOME GAME */
+.Home-Game {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+}
+.Home-Game header {
+  height: 500px;
+}

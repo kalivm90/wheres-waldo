@@ -1,0 +1,56 @@
+.Register {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--PageBGC);
+}
+.Register-Container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 100px;
+}
+
+.Register-Main {
+  background-color: var(--PageContainerBGC);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 50px;
+  width: 400px;
+  height: 450px;
+  color: var(--PageColor);
+}
+
+.Register-Main h1 {
+  margin-bottom: 20px;
+}
+
+.Register-Text {
+  height: 40px;
+  width: 100%;
+  padding-left: 5px;
+  background-color: var(--PageFormBGC);
+  color: var(--PageFormColor);
+  border: var(--PageFormBorder);
+}
+
+.Register-Btn {
+  font-size: 1.2em;
+  border-radius: 0;
+  width: 100%;
+  background-color: var(--PageFormBtnBGC);
+  color: white;
+}
+
+.Register-Google {
+  background-color: #4285f4;
+}
+
+
+.valid {
+  border: 2px solid green;
+}
