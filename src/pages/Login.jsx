@@ -32,9 +32,6 @@ function Login() {
     }
 
     if (user) navigate("/");
-    else {
-      console.log("HELLO");
-    }
   }, [user, loading]);
 
   const handleLogin = () => {
@@ -43,6 +40,11 @@ function Login() {
       const message = error.code
       setErrorMessage(message.split("/")[1].split("-").join(" "));
     })
+  }
+
+  const handleGuest = () => {
+    setUsername("guest")
+    navigate("/");
   }
 
   const handleError = errorMessage ? <ErrorBanner errorMessage={errorMessage} setErrorMessage={setErrorMessage}/> : null;
@@ -73,6 +75,12 @@ function Login() {
             onClick={handleLogin}
           >
             Login
+          </button>
+          <button
+            className="Login-Btn"
+            onClick={handleGuest}
+          >
+            Continue as Guest
           </button>
           <button className="Login-Btn Login-Google" onClick={signInWithGoogle}>
             Login with Google

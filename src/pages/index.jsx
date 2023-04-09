@@ -1,3 +1,11 @@
+/* 
+    TODO, 
+    form validation for register. Login i think is done. 
+    add more characters to game with a dropdown menu to pick who it is
+    db support
+    error page
+*/
+
 // react
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -15,6 +23,8 @@ import waldo from "../assets/images/waldo.png"
 import "../assets/styles/pages/index.css"
 // component 
 import Navbar from "../components/Navbar";
+// helper 
+import toTitleCase from "../util/helpers";
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -72,9 +82,17 @@ const Home = () => {
               </div>
             </header> )
           : (
-            <div className="Info">
-              <h1>Welcome, {username}</h1>
-              {/* <div>{user?.email}</div> */}
+            <div className="Home-Game">
+              <h1>Welcome, {toTitleCase(username)}</h1>
+              <header>
+                {/* <div>{user?.email}</div> */}
+                <div className="Choose-Level">
+                  <h2>Choose your difficulty</h2>
+                  <div className="Levels">
+                      <Link to="/game"><button>Play</button></Link>
+                  </div>
+                </div>
+              </header>
             </div>
           )}
        </div>

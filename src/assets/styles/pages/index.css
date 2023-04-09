@@ -97,6 +97,9 @@
   flex-direction: column; 
   gap: 20px;
 }
+.Home-Game h2 {
+  text-align: center;
+}
 .Home-Game header {
   height: 500px;
 }

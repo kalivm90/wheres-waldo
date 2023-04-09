@@ -4,7 +4,7 @@ import { LightDarkContext } from "../context/LightDarkContext"
 // styles/images
 import "../assets/styles/components/ErrorBanner.css"
 // helper 
-import { toTitleCase } from "../util/helpers"
+import toTitleCase from "../util/helpers"
 
 const ErrorBanner = ({errorMessage, setErrorMessage}) => {
     const {lightDark} = useContext(LightDarkContext)
