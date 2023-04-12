@@ -2,5 +2,12 @@
     position: fixed;
     top: 50px;
     left: 50%;
+    transform: translateX(-50%);
     font-size: 2em;
+    background-color: rgba(0, 0, 0, .7);
+}
+.Clock p {
+    font-size: 1.3em;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

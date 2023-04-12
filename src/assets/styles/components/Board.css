@@ -1,11 +1,17 @@
-/* .Game-Container {
-    position: relative;
-} */
+.Board-Container {
+    background-color: red;
+}
 
-/* .characters {
+#board {
+
+}
+
+.characters {
+    position: absolute;
     height: auto;
     filter: blur(.5px);
     filter: saturate(60%);
+    pointer-events: none;
 }
 
 #waldo {
@@ -14,4 +20,4 @@
 
 #luigi {
     width: 100px;
-} */
+}

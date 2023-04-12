@@ -1,8 +1,8 @@
 /* 
     TODO, 
     form validation for register. Login i think is done. 
-    add more characters to game with a dropdown menu to pick who it is
-    db support
+    still need overlay to pick what character was clicked on 
+    db support (relates to above)
     error page
 */
 
