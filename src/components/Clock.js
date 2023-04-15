@@ -1,17 +1,20 @@
 // style
 import { useEffect, useState } from "react"
 import "../assets/styles/components/Clock.css"
+import { Link } from "react-router-dom";
 
-const Clock = () => {
+const Clock = ({setClockTime, stopClock}) => {
     const [time, setTime] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-          setTime((prevTime) => prevTime + 1);
+          if(!stopClock) {
+            setTime((prevTime) => prevTime + 1);
+          }
         }, 1000);
     
         return () => clearInterval(timer);
-      }, []);
+      }, [stopClock]);
     
       const formatTime = (timeInSeconds) => {
         const hours = Math.floor(timeInSeconds / 3600);
@@ -21,12 +24,17 @@ const Clock = () => {
         const formattedHours = hours.toString().padStart(2, "0");
         const formattedMinutes = minutes.toString().padStart(2, "0");
         const formattedSeconds = seconds.toString().padStart(2, "0");
-    
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        
+        const formattedTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+        
+        setClockTime(formattedTime);
+
+        return formattedTime;
       };
 
     return (
         <div className="Clock">
+            <Link to="/">Home</Link>
             <p>{formatTime(time)}</p>
         </div>
     )

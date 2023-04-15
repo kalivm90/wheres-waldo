@@ -97,9 +97,26 @@
   flex-direction: column; 
   gap: 20px;
 }
+
+.Home-Title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Home-Title button {
+  background-color: grey;
+  color: white;
+  width: 200px;
+  font-size: 1.9em;
+}
+
 .Home-Game h2 {
   text-align: center;
 }
 .Home-Game header {
   height: 500px;
+}
+
+#play {
+  background-color: var(--thBGC);
 }

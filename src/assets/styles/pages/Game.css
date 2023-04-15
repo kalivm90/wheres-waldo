@@ -1,11 +1,9 @@
-/* .Game-Container {
-    position: relative;
-} */
-
-/* .characters {
+.characters {
+    position: absolute;
     height: auto;
     filter: blur(.5px);
     filter: saturate(60%);
+    pointer-events: none;
 }
 
 #waldo {
@@ -14,4 +12,8 @@
 
 #luigi {
     width: 100px;
-} */
+}
+
+#mario {
+    width: 120px;
+}

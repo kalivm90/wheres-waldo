@@ -33,7 +33,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className={`Navbar ${lightDark}`}>
+        <nav className={`Navbar ${lightDark}`} data-testid="nav">
             <h1>Where's Waldo?</h1>
             <div className="Links">
                     <div className={`Link ${active === "Home" ? "active" : ""}`}>
@@ -51,7 +51,7 @@ const Navbar = () => {
                     )}
             </div>
             <div className="lightDark-container">
-                <button onClick={handleClick}><img src={(lightDark === "light" ? light : dark)} alt="light dark icon"></img></button>
+                <button data-testid="lightDark-btn" onClick={handleClick}><img src={(lightDark === "light" ? light : dark)} alt="light dark icon"></img></button>
             </div>
         </nav>
     )

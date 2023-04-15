@@ -18,6 +18,9 @@
   --PageFormColor: black;
   --PageFormBorder: 1px solid black;
   --PageFormBtnBGC: black;
+  /* table */
+  --thBGC: rgb(76, 76, 244);
+  --thColor: white;
 }
 
 .dark {
@@ -40,6 +43,9 @@
   --PageFormColor: white;
   --PageFormBorder: none;
   --PageFormBtnBGC: rgb(77, 77, 77);
+  /* table */
+  --thBGC: rgb(28, 28, 172);
+  --thColor: black;
 }
 
 button {

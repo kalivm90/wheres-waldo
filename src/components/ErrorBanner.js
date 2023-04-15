@@ -15,6 +15,7 @@ const ErrorBanner = ({errorMessage, setErrorMessage}) => {
             setTimeout(() => {
                 setShow(false)
                 setErrorMessage("")
+                console.log("FIRE");
             }, 3000)
         }
     }, [])

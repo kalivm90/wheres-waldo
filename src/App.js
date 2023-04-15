@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // context
 import { LightDarkProvider } from "./context/LightDarkContext";
 import { UserProvider } from "./context/UserContext";
+import { CharacterProvider } from "./context/CharacterContext";
 // pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -17,16 +18,18 @@ function App() {
   return (
       <UserProvider>
         <LightDarkProvider>
-          <Router>
-            <Routes>
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/register" element={<Register />} />
-              <Route exact path="/reset" element={<Reset />} />
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/game" element={<Game />} />
-              <Route exact path="/error" element={<Error />} />
-            </Routes>
-          </Router>
+          <CharacterProvider>
+            <Router>
+              <Routes>
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/register" element={<Register />} />
+                <Route exact path="/reset" element={<Reset />} />
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/game" element={<Game />} />
+                <Route exact path="/error" element={<Error />} />
+              </Routes>
+            </Router>
+          </CharacterProvider>
         </LightDarkProvider>
       </UserProvider>
   );

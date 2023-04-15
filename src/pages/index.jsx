@@ -1,9 +1,6 @@
 /* 
     TODO, 
-    form validation for register. Login i think is done. 
-    still need overlay to pick what character was clicked on 
-    db support (relates to above)
-    error page
+    finish testing
 */
 
 // react
@@ -14,6 +11,7 @@ import {auth, db, logout} from "../util/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 // db
 import { query, collection, getDocs, where } from "firebase/firestore";
+import WaldoDB from "../database/db";
 // context
 import { UserContext } from "../context/UserContext";
 import { LightDarkContext } from "../context/LightDarkContext";
@@ -23,13 +21,17 @@ import waldo from "../assets/images/waldo.png"
 import "../assets/styles/pages/index.css"
 // component 
 import Navbar from "../components/Navbar";
+import Leaderboard from "../components/Leaderboard";
 // helper 
 import toTitleCase from "../util/helpers";
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   const {lightDark} = useContext(LightDarkContext);
-  const {username, setUsername} = useContext(UserContext)
+  const {username, setUsername, userId} = useContext(UserContext)
+  const waldoDB = WaldoDB();
+
+  const [leaderboardData, setLeaderboardData] = useState([]);
   const navigate = useNavigate();
 
   const fetchUserName = async () => {
@@ -44,13 +46,48 @@ const Home = () => {
     }
   };
 
+  const getLeaderBoard = async() => {
+    const q = await waldoDB.getCollection("leaderboard") // {field: "name", operator: "==", value: "Dylan Campbell"}
+    if (q) {
+      if (typeof(q) === "object") {
+        setLeaderboardData(q)
+      }
+    }
+  }
+
+  const sortLeaderboard = () => {
+    if (!leaderboardData[1]) {
+      return <p>1 {leaderboardData.name} {leaderboardData.time}</p>
+    } else {
+      const sortedTimes = leaderboardData.sort((a, b) => {
+        return a.time.localeCompare(b.time);
+      });
+
+      let rank = 1;
+      let prevTime = null;
+      const rankedTimes = sortedTimes.map((time, index) => {
+        if (prevTime !== null && time.time !== prevTime) {
+          rank += 1;
+        }
+        prevTime = time.time;
+        return <p>{rank} {time.name} {time.time}</p>
+      })
+      return rankedTimes
+    }
+  } 
 
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
-  }, [user, loading]);
+    getLeaderBoard();
+    const times = ["00:00:20", "00:00:30", "00:00:01", "00:00:02"]
+    times.sort((a, b) => {
+      return a.localeCompare(b);
+    })
 
+    console.log(times);
+  }, [user, loading]);
 
   return (
     <div className={`Home ${lightDark}`}>
@@ -83,16 +120,11 @@ const Home = () => {
             </header> )
           : (
             <div className="Home-Game">
-              <h1>Welcome, {toTitleCase(username)}</h1>
-              <header>
-                {/* <div>{user?.email}</div> */}
-                <div className="Choose-Level">
-                  <h2>Choose your difficulty</h2>
-                  <div className="Levels">
-                      <Link to="/game"><button>Play</button></Link>
-                  </div>
-                </div>
-              </header>
+              <div className="Home-Title">
+                <h1>Welcome, {toTitleCase(username)}</h1>
+                <Link to="/game"><button id="play">Play</button></Link>
+              </div>
+              <Leaderboard />
             </div>
           )}
        </div>

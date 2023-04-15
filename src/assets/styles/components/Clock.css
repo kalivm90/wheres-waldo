@@ -5,9 +5,20 @@
     transform: translateX(-50%);
     font-size: 2em;
     background-color: rgba(0, 0, 0, .7);
+    z-index: 4;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 .Clock p {
     font-size: 1.3em;
     color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Clock a {
+    color: white;
+    font-size: .6em;
+    text-align: center;
 }

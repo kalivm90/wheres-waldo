@@ -19,10 +19,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   // context
-  const {username, setUsername} = useContext(UserContext);
-  const {errorMessage, setErrorMessage} = useContext(UserContext)
+  const {username, setUsername, errorMessage, setErrorMessage} = useContext(UserContext);
   const { lightDark } = useContext(LightDarkContext)
-
+  // navigate
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +30,9 @@ function Login() {
       return;
     }
 
-    if (user) navigate("/");
+    if (user) {
+      navigate("/");
+    }
   }, [user, loading]);
 
   const handleLogin = () => {
