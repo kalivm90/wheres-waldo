@@ -55,26 +55,6 @@ const Home = () => {
     }
   }
 
-  const sortLeaderboard = () => {
-    if (!leaderboardData[1]) {
-      return <p>1 {leaderboardData.name} {leaderboardData.time}</p>
-    } else {
-      const sortedTimes = leaderboardData.sort((a, b) => {
-        return a.time.localeCompare(b.time);
-      });
-
-      let rank = 1;
-      let prevTime = null;
-      const rankedTimes = sortedTimes.map((time, index) => {
-        if (prevTime !== null && time.time !== prevTime) {
-          rank += 1;
-        }
-        prevTime = time.time;
-        return <p>{rank} {time.name} {time.time}</p>
-      })
-      return rankedTimes
-    }
-  } 
 
   useEffect(() => {
     if (loading) return;
@@ -85,8 +65,6 @@ const Home = () => {
     times.sort((a, b) => {
       return a.localeCompare(b);
     })
-
-    console.log(times);
   }, [user, loading]);
 
   return (

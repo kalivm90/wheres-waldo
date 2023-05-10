@@ -1,85 +1,114 @@
-import '@testing-library/jest-dom';
-import { getAllByRole, render, screen, waitFor} from '@testing-library/react'
-import * as setupTest from "../setupTests"
-import Navbar from '../../components/Navbar';
-import userEvent from '@testing-library/user-event';
-import { UserContext } from '../../context/UserContext';
-import { MemoryRouter } from 'react-router-dom';
-import { LightDarkContext } from '../../context/LightDarkContext';
-import { useContext } from 'react';
+import * as setupTest from "../setupTests.js"
+import Navbar from "../../components/Navbar.js"
+import { BrowserRouter, Link, MemoryRouter } from "react-router-dom"
+import { UserContext } from "../../context/UserContext.jsx"
+import { LightDarkContext } from "../../context/LightDarkContext.jsx"
+import { fireEvent, getByTestId, render, screen, waitFor} from '@testing-library/react'
+import Links from "../../components/Navbar-Links.js";
+import renderer from 'react-test-renderer';
+import userEvent from "@testing-library/user-event";
 
-
-let before = true 
-
-const mockUser = "Bill"
-const mockLightDark = "dark"
-
-
-beforeEach(() => {
-    return setupTest.setUp(<Navbar/>);
-})
-
-afterEach(() => {
-    before = true
-})
+let component;
 
 describe("test navbar", () => {
-    test("make sure it renders", () => {
-        const title = screen.getByText("Where's Waldo?")
-        const home = screen.getByRole("link", {name: "Home"})
-        const login = screen.getByRole("link", {name: "Login"});
+
+    const mockUser = "testUser";
+    const mockLight = "light";
+
+    test("make sure page elements render", () => {
+        component = setupTest.setUp({component: <Navbar/>})
+
+        const title = setupTest.screen.getByRole("heading", {name: "Where's Waldo?"})
+        const home = setupTest.screen.getByRole("link", {name: "Home"})
+        const login = setupTest.screen.getByRole("link", {"name": "Login"})
 
         expect(title).toBeInTheDocument();
         expect(home).toBeInTheDocument();
         expect(login).toBeInTheDocument();
     })
-    test("check links with user and the routing of the link that renders with a user", () => {
-        before = false 
+    test("renders logout link when user is present", () => {
+        // navbar uses <Link> from react-router-dom so it needs to be called with BrowserRouter
+        const navbar = setupTest.renderWithContext({component: <Navbar/>}, mockUser, mockLight);
+        render(
+            <BrowserRouter>
+                {navbar.component}
+            </BrowserRouter>
+        )
+        // making sure it renders properly 
+        const title = setupTest.screen.getByText("Where's Waldo?")
+        expect(title).toBeInTheDocument();
 
-        setupTest.renderWithContext(<Navbar/>, mockUser, mockLightDark);
-        let logout;
-        // you have to wait for the user to be set
+        // check for logout link
+        const logout = setupTest.screen.getByText("Logout");
+        expect(logout).toBeInTheDocument()
+    })
+    test("clicking Logout displays Login link", async () => {
+        // render the Links component with a logged in user
+        const setUsernameMock = jest.fn();
+        let links = setupTest.renderWithContext(
+          { component: <Links /> },
+          mockUser,
+          mockLight
+        );
+        render(
+          <BrowserRouter>
+            {links.component}
+          </BrowserRouter>
+        );
+      
+        // verify that the Logout link is present and clickable
+        const logout = setupTest.screen.getByText("Logout");
+        expect(logout).toBeInTheDocument();
+        expect(logout).toBeEnabled();
+      
+        // simulate clicking the Logout link
+        fireEvent.click(logout);
+
         waitFor(() => {
-            logout = screen.getByRole("link", {name: "Logout"})
-            expect(logout).toBeInTheDocument();
+            expect(window.location.pathname).toBe("/");
+            expect(setUsernameMock).toBeCalled();
         })
+      });
+    test("renders login link when no user is logged in", () => {
+        const links = setupTest.renderWithContext(
+            { component: <Links /> },
+            null,
+            mockLight
+        );
+
+        render (
+            <BrowserRouter>
+                {links.component}
+            </BrowserRouter>
+        )
+
+        const login = setupTest.screen.getByText("Login");
+        expect(login).toBeInTheDocument()
     })
-    test("check that the links go to where they should", () => {
-        const links = screen.getAllByRole("link");
+    // this test does not pass and I have no idea why and I give up
+    test("changes page styling when lightDark button is pressed", () => {
 
-        links.find(btn => {
-            if (btn.textContent === "Home") {
-                userEvent.click(btn)
-                waitFor(() => expect(window.location.pathname).toBe("/"))
-            } else if (btn.textContent === "Login") {
-                userEvent.click(btn)
-                waitFor(() => expect(window.location.pathname).toBe("/login"))
-            }
-        })
-    })
-    test("checks that the links go where they should with a user", () => {
-        before = false 
-        setupTest.renderWithContext(<Navbar/>, mockUser, mockLightDark);
+       render (
+        <BrowserRouter>
+            <LightDarkContext.Provider value={{lightDark: "dark", setLightDark: jest.fn()}}>
+                <UserContext.Provider value={{username: "Bob", setUsername: jest.fn()}}>
+                    <Navbar/>
+                </UserContext.Provider>
+            </LightDarkContext.Provider>
+        </BrowserRouter>
+        ); 
 
-        let link;
-        waitFor(() => {
-            link = screen.getByRole("link", {name: "Logout"});
-            userEvent.click(link)
-            waitFor(() => expect(window.location.pathname).toBe("/logout"));
-        })
-    })
-    test("checks that lightDark button changes lightDark context", () => {
-        before = false 
-
-        setupTest.renderWithContext(<Navbar/>, mockUser, mockLightDark);
-
-        const nav = screen.getByTestId("nav");
-        const button = screen.getByTestId("lightDark-btn")
+        const nav = setupTest.screen.getByTestId("nav")
+        expect(nav).toBeInTheDocument();
+        expect(nav).toHaveClass("Navbar dark")
+        
+        const button = setupTest.screen.getByTestId("lightDark-btn");
+        expect(button).toBeInTheDocument();
+        console.log(nav.className)
+    
         userEvent.click(button)
+        expect(nav).toHaveClass("Navbar light")
 
-        expect(nav).toHaveClass("Navbar light");
+
     })
-})
-
-// userEvent.click(logout)
-// waitFor(() => expect(window.location.pathname).toBe())
+})  

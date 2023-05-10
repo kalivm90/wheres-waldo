@@ -3,7 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
-import { render, screen} from '@testing-library/react'
+import { render, screen, waitFor, act} from '@testing-library/react'
 // contexts 
 import { UserContext, UserProvider } from '../context/UserContext';
 import { LightDarkProvider, LightDarkContext } from '../context/LightDarkContext';
@@ -31,9 +31,10 @@ function setUp({component}, initalEntries="/") {
 }
 
 const renderWithContext = ({component}, user, lightDark, alreadySelectedChars=null, initalEntries="/") => {
+    console.log(lightDark)
     return render (
-        <UserContext.Provider value={{username: user}}>
-            <LightDarkContext.Provider value={{lightDark: lightDark}}>
+        <UserContext.Provider value={{username: user, setUsername: jest.fn()}}>
+            <LightDarkContext.Provider value={{lightDark: lightDark, setLightDark: jest.fn()}}>
                 <CharacterContext.Provider value={{alreadySelectedChars: alreadySelectedChars}}>
                     <MemoryRouter initialEntries={[initalEntries]}>
                         {component}
@@ -45,4 +46,12 @@ const renderWithContext = ({component}, user, lightDark, alreadySelectedChars=nu
 }
 
 
-export {setUp, TestWrapper, renderWithContext}
+export {
+    setUp, 
+    TestWrapper, 
+    renderWithContext, 
+    render, 
+    screen,
+    waitFor,
+    act
+}

@@ -37,7 +37,7 @@ const WaldoDB = () => {
                     ? snapshot.docs.map((doc) => doc.data()) 
                     : snapshot.docs[0]?.data())
                 : null;
-            console.log(result, "db.js");
+            // console.log(result, "db.js");
             return result
         } catch (error) {
             return error 
@@ -58,19 +58,6 @@ const WaldoDB = () => {
             return error
         }
     }
-
-    // const addDocument = async(docName, name, uid, time) => {
-    //     try {
-    //         const col = collection(db, docName)
-    //         await addDoc(col, {
-    //             name: name, 
-    //             uid: uid,
-    //             time: time,
-    //         })  
-    //     } catch (error) {
-    //         return error
-    //     }
-    // }
 
     const updateDocument = async(docName, docId, time) => {
         try {

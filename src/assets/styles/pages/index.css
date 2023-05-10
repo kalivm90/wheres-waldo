@@ -107,7 +107,7 @@
   background-color: grey;
   color: white;
   width: 200px;
-  font-size: 1.9em;
+  font-size: 1.6em;
 }
 
 .Home-Game h2 {
@@ -119,4 +119,49 @@
 
 #play {
   background-color: var(--thBGC);
+}
+
+/* not logged in section */
+@media only screen and (max-width: 1270px) {
+  .Home-Info {
+    gap: 50px;
+  }
+  .Info-Wrapper {
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+} 
+
+@media only screen and (max-width: 923px) {
+  .Info-Wrapper {
+    width: 95%;
+    font-size: .9em;
+  }
+} 
+
+/* logged in section */
+
+@media only screen and (max-width: 923px) {
+  .Home-Title h1 {
+    font-size: 1.6em;
+  }
+  .Home-Title button {
+    width: 150px;
+    font-size: 1.5em;
+  }
+} 
+
+@media only screen and (max-width: 534px) {
+    .Home-Title h1 {
+      font-size: 1.2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .Home-Title button {
+      width: 150px;
+      height: 30px;
+      font-size: 1.2em;
+    }
 }

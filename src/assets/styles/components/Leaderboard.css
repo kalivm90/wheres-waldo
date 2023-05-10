@@ -43,3 +43,10 @@ table {
   td {
     font-size: 1.4em;
   }
+
+
+  @media only screen and (max-width: 616px) {
+    th, td {
+      font-size: 1em;
+    }
+  }

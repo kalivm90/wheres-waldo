@@ -14,8 +14,9 @@
     box-shadow: var(--NavbarBoxShadowColor);
 }
 
+
+
 .Navbar h1 {
-    flex: 1;
     padding-left: var(--navbarChildPad);
     font-family: "BioRhyme Expanded";
     font-size: 2.5em;
@@ -57,14 +58,13 @@
     background-color: var(--NavbarActiveBGC);
 }
 
-.Navbar .lightDark-container {
+.lightDark-container {
     flex: 1;
     padding-right: var(--navbarChildPad);
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 200px;
-    /* background-color: green; */
 }
 
 .lightDark-container button {
@@ -79,4 +79,34 @@
 .lightDark-container button img {
     width: var(--lightDarkImageSize);
     height: auto;
+}
+
+@media only screen and (max-width: 1666px) {
+  .Navbar h1 {
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    flex: 1;
+  }
+}
+
+@media only screen and (max-width: 616px) {
+    .Navbar {
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .Navbar h1 {
+        flex: 1;
+    }
+    .Link {
+        width: 100%;
+        font-size: .8em;
+    } 
+    .lightDark-container, .lightDark-container button {
+        display: none;
+        visibility: hidden;
+    }
+    .lightDark-container button {
+        width: 70px;
+        height: 60px;
+    }
 }

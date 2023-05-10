@@ -13,6 +13,9 @@ import board from "../assets/images/img.jpg"
 // context
 import { UserContext } from "../context/UserContext"
 import { useNavigate } from "react-router-dom"
+import { useAuthState } from "react-firebase-hooks/auth"
+// auth
+import { auth } from "../util/firebase"
 
 const Game = () => {
 
@@ -27,6 +30,8 @@ const Game = () => {
     const [stopClock, setStopClock] = useState(false);
 
     const navigate = useNavigate()
+
+    const [user, loading, error] = useAuthState(auth);
 
     const characters = [
         { name: "Mario", src: mario, id: "mario"},
@@ -93,21 +98,17 @@ const Game = () => {
     }
 
     useEffect(() => {
-        console.log("HERE 1")
-        if (username === "guest") {
-            console.log("HERE 2")
-            sessionStorage.setItem("guest", username)
-        } else if (!username) {
+        if (!user && username != "guest") {
             const stored = sessionStorage.getItem("guest")
             if (stored === "guest") {
                 setUsername("guest")
+            } else if (!stored) {
+                sessionStorage.setItem("guest", "guest")
+                setUsername("guest")
             }
-            console.log("HERE 3")
-        } else {
-            navigate("/error");
-        }
-
-    }, [username])
+            else navigate("/game")
+        } 
+    }, [user, username])
 
     return (
         <div className="Game-Container">
